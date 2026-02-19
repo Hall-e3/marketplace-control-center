@@ -1,55 +1,72 @@
 
 > frontend@0.1.0 dev
-> next dev -p 3000
+> next dev
 
   ▲ Next.js 14.2.0
   - Local:        http://localhost:3000
   - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 2s
- ○ Compiling / ...
- ✓ Compiled / in 6.5s (688 modules)
- GET / 200 in 7078ms
- ✓ Compiled in 524ms (342 modules)
- ○ Compiling /middleware ...
- ✓ Compiled /middleware in 901ms (71 modules)
- ○ Compiling /auth/login ...
- ✓ Compiled /auth/login in 6.4s (943 modules)
- GET /auth/login 200 in 7564ms
- GET /auth/login 200 in 7325ms
- GET /auth/login 200 in 197ms
- GET /auth/login 200 in 134ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 767ms (934 modules)
- GET /auth/register 404 in 1012ms
- GET /auth/register 404 in 1004ms
- ○ Compiling /public/products ...
- ✓ Compiled /public/products in 803ms (944 modules)
- GET /public/products 200 in 1132ms
- ✓ Compiled / in 347ms (525 modules)
- GET / 200 in 652ms
- GET /auth/register 404 in 72ms
- GET /auth/register 404 in 46ms
- GET /public/products 200 in 75ms
- ✓ Compiled in 1293ms (1040 modules)
- ✓ Compiled in 423ms (443 modules)
- ✓ Compiled in 275ms (443 modules)
- ✓ Compiled in 318ms (443 modules)
- ✓ Compiled in 223ms (443 modules)
- ✓ Compiled in 230ms (443 modules)
- ✓ Compiled in 248ms (443 modules)
- ✓ Compiled in 194ms (443 modules)
- ✓ Compiled in 568ms (953 modules)
- ✓ Compiled in 299ms (953 modules)
- ✓ Compiled in 266ms (953 modules)
- ✓ Compiled in 254ms (443 modules)
- ✓ Compiled in 174ms (443 modules)
-   Reload env: .env
- ✓ Compiled in 659ms (1024 modules)
- GET /public/products 200 in 126ms
- GET /public/products 200 in 42ms
+ ✓ Ready in 2.7s
+ ✓ Compiled /middleware in 375ms (71 modules)
  ○ Compiling /auth/register ...
- ✓ Compiled /auth/register in 1033ms (959 modules)
- GET /auth/register 200 in 1306ms
- GET /auth/register 200 in 1284ms
+ ✓ Compiled /auth/register in 5.6s (951 modules)
+ GET /auth/register 200 in 6085ms
+ GET /auth/register 200 in 6014ms
+ ✓ Compiled in 464ms (437 modules)
+ GET /auth/register 200 in 60ms
+ GET /auth/register 200 in 42ms
+ ○ Compiling /auth/login ...
+ ✓ Compiled /auth/login in 1081ms (936 modules)
+ GET /auth/login 200 in 329ms
+ GET /auth/login 200 in 324ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 592ms (939 modules)
+ GET /auth/forgot-password 404 in 163ms
+ GET /auth/forgot-password 404 in 121ms
+ GET /auth/register 200 in 97ms
+ GET /auth/register 200 in 88ms
+ GET /auth/login 200 in 87ms
+ GET /auth/login 200 in 72ms
+ GET /auth/login 200 in 41ms
+ GET /auth/login 200 in 35ms
+ GET /auth/login 200 in 48ms
+ GET /auth/login 200 in 38ms
+ ○ Compiling /public/products ...
+ ✓ Compiled /public/products in 1175ms (946 modules)
+ GET /public/products 200 in 1579ms
+ GET /auth/register 200 in 105ms
+ GET /auth/register 200 in 88ms
+ ✓ Compiled in 1422ms (960 modules)
+ GET /auth/register 200 in 516ms
+ GET /auth/register 200 in 488ms
+ GET /auth/register 200 in 49ms
+ GET /auth/register 200 in 40ms
+ GET /auth/register 200 in 126ms
+ GET /auth/register 200 in 112ms
+ GET /auth/register 200 in 82ms
+ GET /auth/register 200 in 69ms
+ GET /auth/login 200 in 100ms
+ GET /auth/login 200 in 76ms
+ GET /auth/login 200 in 51ms
+ GET /auth/login 200 in 41ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 4.7s (1163 modules)
+ GET /dashboard 200 in 5119ms
+ GET /dashboard 200 in 5111ms
+ ○ Compiling /dashboard/products ...
+ ✓ Compiled /dashboard/products in 1160ms (1177 modules)
+ GET /dashboard 200 in 209ms
+ GET /dashboard 200 in 184ms
+ GET /dashboard/products 200 in 154ms
+ GET /dashboard/products 200 in 129ms
+ GET /public/products 200 in 106ms
+ GET /public/products 200 in 49ms
+ GET /dashboard 200 in 40ms
+ GET /dashboard 200 in 34ms
+ GET /dashboard 200 in 35ms
+ GET /dashboard 200 in 30ms
+ ○ Compiling /dashboard/products/new ...
+ ✓ Compiled /dashboard/products/new in 3.1s (1185 modules)
+ GET /dashboard/products/new 200 in 3570ms
+ GET /dashboard/products/new 200 in 3560ms
