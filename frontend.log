@@ -34,3 +34,18 @@
  GET /public/products 200 in 75ms
  ✓ Compiled in 1293ms (1040 modules)
  ✓ Compiled in 423ms (443 modules)
+ ✓ Compiled in 275ms (443 modules)
+ ✓ Compiled in 318ms (443 modules)
+ ✓ Compiled in 223ms (443 modules)
+ ✓ Compiled in 230ms (443 modules)
+ ✓ Compiled in 248ms (443 modules)
+ ✓ Compiled in 194ms (443 modules)
+ ✓ Compiled in 568ms (953 modules)
+ ✓ Compiled in 299ms (953 modules)
+ ✓ Compiled in 266ms (953 modules)
+ ✓ Compiled in 254ms (443 modules)
+ ✓ Compiled in 174ms (443 modules)
+   Reload env: .env
+ ✓ Compiled in 659ms (1024 modules)
+ GET /public/products 200 in 126ms
+ GET /public/products 200 in 42ms

@@ -1,7 +1,7 @@
 import { api } from "./api";
 import { LoginCredentials, RegisterData } from "@/lib/types";
 
-const AUTH_URL = "/auth";
+const AUTH_URL = "/api/v1/auth";
 export const authService = {
   login: async (credentials: LoginCredentials) => {
     const response = await api.post(`${AUTH_URL}/jwt/create/`, credentials);

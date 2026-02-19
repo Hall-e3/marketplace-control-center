@@ -16,32 +16,23 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import { Package, Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useAuthQueryMutation } from "@/hooks/useAuthQueryMutation";
-
-const registerSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-  first_name: z.string().min(2, "First name is too short"),
-  last_name: z.string().min(2, "Last name is too short"),
-});
-
-type RegisterFormValues = z.infer<typeof registerSchema>;
+import { registerSchema } from "@/schemas/auth.schema";
+import { RegisterData } from "@/lib/types";
 
 export default function RegisterPage() {
-  const router = useRouter();
   const { mutate, isPending } = useAuthQueryMutation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormValues>({
+  } = useForm<RegisterData>({
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data: RegisterFormValues) => {
-    mutate({ operation: "register", data: { ...data, business: "default" } });
+  const onSubmit = (data: RegisterData) => {
+    mutate({ operation: "register", data });
   };
 
   return (
@@ -65,7 +56,11 @@ export default function RegisterPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="first_name">First Name</Label>
-                <Input id="first_name" {...register("first_name")} />
+                <Input
+                  id="first_name"
+                  placeholder="John"
+                  {...register("first_name")}
+                />
                 {errors.first_name && (
                   <p className="text-xs text-destructive">
                     {errors.first_name.message}
@@ -74,7 +69,11 @@ export default function RegisterPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="last_name">Last Name</Label>
-                <Input id="last_name" {...register("last_name")} />
+                <Input
+                  id="last_name"
+                  placeholder="Doe"
+                  {...register("last_name")}
+                />
                 {errors.last_name && (
                   <p className="text-xs text-destructive">
                     {errors.last_name.message}
@@ -83,7 +82,7 @@ export default function RegisterPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Email Address</Label>
               <Input
                 id="email"
                 type="email"
@@ -96,17 +95,49 @@ export default function RegisterPage() {
                 </p>
               )}
             </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  {...register("password")}
+                />
+                {errors.password && (
+                  <p className="text-xs text-destructive">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="re_password">Confirm Password</Label>
+                <Input
+                  id="re_password"
+                  type="password"
+                  {...register("re_password")}
+                />
+                {errors.re_password && (
+                  <p className="text-xs text-destructive">
+                    {errors.re_password.message}
+                  </p>
+                )}
+              </div>
+            </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" {...register("password")} />
-              {errors.password && (
+              <Label htmlFor="business_name">Business Name</Label>
+              <Input
+                id="business_name"
+                placeholder="Acme Inc."
+                {...register("business_name")}
+              />
+              {errors.business_name && (
                 <p className="text-xs text-destructive">
-                  {errors.password.message}
+                  {errors.business_name.message}
                 </p>
               )}
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col gap-4 mt-4">
+          <CardFooter className="flex flex-col gap-4 mt-8">
             <Button className="w-full" type="submit" disabled={isPending}>
               {isPending ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
