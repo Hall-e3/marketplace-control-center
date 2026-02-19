@@ -77,3 +77,19 @@
  GET /auth/login 200 in 59ms
  GET /auth/register 200 in 48ms
  GET /auth/register 200 in 35ms
+ GET /auth/login 200 in 34ms
+ GET /auth/login 200 in 28ms
+ GET /auth/register 200 in 43ms
+ GET /auth/register 200 in 34ms
+ GET /auth/login 200 in 36ms
+ GET /auth/login 200 in 28ms
+ GET /auth/register 200 in 51ms
+ GET /auth/register 200 in 42ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1932ms (1184 modules)
+ POST /api/auth/register 404 in 2282ms
+ GET /auth/login 200 in 225ms
+ GET /auth/login 200 in 197ms
+ ✓ Compiled in 1475ms (1181 modules)
+ ✓ Compiled in 808ms (1181 modules)
+ ✓ Compiled in 335ms (1181 modules)

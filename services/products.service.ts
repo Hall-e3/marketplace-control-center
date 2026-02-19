@@ -1,7 +1,7 @@
 import { api } from "./api";
 import { CreateProductData, Product } from "@/lib/types";
 
-const PRODUCTS_URL = "/api/v1/products";
+const PRODUCTS_URL = "/products";
 
 export const productsService = {
   getProducts: async () => {
