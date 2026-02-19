@@ -70,3 +70,4 @@
  ✓ Compiled /dashboard/products/new in 3.1s (1185 modules)
  GET /dashboard/products/new 200 in 3570ms
  GET /dashboard/products/new 200 in 3560ms
+ GET /public/products 200 in 48ms
