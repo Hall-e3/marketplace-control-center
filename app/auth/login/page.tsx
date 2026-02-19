@@ -27,6 +27,7 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm<LoginCredentials>({
     schema: loginSchema,
+    mode: "onTouched",
   });
 
   const onSubmit = (data: LoginCredentials) => {

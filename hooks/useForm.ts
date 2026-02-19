@@ -10,6 +10,7 @@ import { ZodSchema } from "zod";
 
 interface UseFormOptions<T extends FieldValues> extends UseFormProps<T> {
   schema?: ZodSchema<T>;
+  mode?: "onBlur" | "onChange" | "onSubmit" | "onTouched" | "all";
 }
 
 export function useForm<T extends FieldValues>({
