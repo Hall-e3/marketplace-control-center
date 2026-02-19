@@ -18,3 +18,19 @@
  ✓ Compiled /auth/login in 6.4s (943 modules)
  GET /auth/login 200 in 7564ms
  GET /auth/login 200 in 7325ms
+ GET /auth/login 200 in 197ms
+ GET /auth/login 200 in 134ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 767ms (934 modules)
+ GET /auth/register 404 in 1012ms
+ GET /auth/register 404 in 1004ms
+ ○ Compiling /public/products ...
+ ✓ Compiled /public/products in 803ms (944 modules)
+ GET /public/products 200 in 1132ms
+ ✓ Compiled / in 347ms (525 modules)
+ GET / 200 in 652ms
+ GET /auth/register 404 in 72ms
+ GET /auth/register 404 in 46ms
+ GET /public/products 200 in 75ms
+ ✓ Compiled in 1293ms (1040 modules)
+ ✓ Compiled in 423ms (443 modules)
