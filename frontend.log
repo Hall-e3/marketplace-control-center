@@ -49,3 +49,7 @@
  ✓ Compiled in 659ms (1024 modules)
  GET /public/products 200 in 126ms
  GET /public/products 200 in 42ms
+ ○ Compiling /auth/register ...
+ ✓ Compiled /auth/register in 1033ms (959 modules)
+ GET /auth/register 200 in 1306ms
+ GET /auth/register 200 in 1284ms
