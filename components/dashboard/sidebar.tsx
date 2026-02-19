@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { RoleGuard } from "../auth/role-guard";
 
 export function Sidebar() {
   const { sidebarOpen, toggleSidebar } = useApp();
@@ -42,12 +43,6 @@ export function Sidebar() {
     },
   ];
 
-  const visibleItems = navItems.filter(
-    (item) =>
-      !item.requiredRole ||
-      (user?.role && item.requiredRole === user.role.name),
-  );
-
   return (
     <aside
       className={cn(
@@ -58,20 +53,32 @@ export function Sidebar() {
       <div className="flex flex-col h-full">
         {/* Navigation Items */}
         <nav className="flex-1 px-3 py-6 space-y-2">
-          {visibleItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
-                "text-foreground/70 hover:text-foreground hover:bg-muted",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              )}
-            >
-              {item.icon}
-              {sidebarOpen && <span>{item.label}</span>}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const content = (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
+                  "text-foreground/70 hover:text-foreground hover:bg-muted",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                )}
+              >
+                {item.icon}
+                {sidebarOpen && <span>{item.label}</span>}
+              </Link>
+            );
+
+            if (item.requiredRole === "admin") {
+              return (
+                <RoleGuard key={item.href} allowedRoles={["admin"]}>
+                  {content}
+                </RoleGuard>
+              );
+            }
+
+            return content;
+          })}
         </nav>
 
         {/* Collapse Button */}

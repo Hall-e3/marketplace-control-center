@@ -25,6 +25,7 @@ import { Edit, Trash2, CheckCircle, Loader2, Package } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { ProductStatus } from "@/schemas/product.schema";
+import { RoleGuard } from "../auth/role-guard";
 
 interface ProductTableProps {
   products: Product[];
@@ -41,11 +42,9 @@ export function ProductTable({
   onEdit,
   loading = false,
 }: ProductTableProps) {
-  const { user, isAdmin, isApprover } = useAuth();
+  const { user } = useAuth();
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [approvingId, setApprovingId] = useState<string | null>(null);
-
-  const canApprove = isAdmin || isApprover;
 
   const getStatusBadge = (status: ProductStatus) => {
     const variants: Record<ProductStatus, { variant: any; label: string }> = {
@@ -150,61 +149,67 @@ export function ProductTable({
                     <span className="sr-only">Edit {product?.name}</span>
                   </Button>
 
-                  {canApprove && product?.status !== "approved" && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleApprove(product.id)}
-                      disabled={approvingId === product.id || loading}
-                      className="text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-950/30"
-                    >
-                      {approvingId === product.id ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        <CheckCircle className="h-4 w-4" />
-                      )}
-                      <span className="sr-only">Approve {product?.name}</span>
-                    </Button>
-                  )}
-
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
+                  <RoleGuard allowedRoles={["admin", "approver"]}>
+                    {product?.status !== "approved" && (
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/30"
+                        onClick={() => handleApprove(product.id)}
+                        disabled={approvingId === product.id || loading}
+                        className="text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-950/30"
                       >
-                        <Trash2 className="h-4 w-4" />
-                        <span className="sr-only">Delete {product?.name}</span>
+                        {approvingId === product.id ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <CheckCircle className="h-4 w-4" />
+                        )}
+                        <span className="sr-only">Approve {product?.name}</span>
                       </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>Delete product</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Are you sure you want to delete "{product?.name}"?
-                          This action cannot be undone.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <div className="flex gap-2 justify-end">
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => handleDelete(product?.id)}
-                          disabled={deletingId === product?.id || loading}
-                          className="bg-red-600 hover:bg-red-700"
+                    )}
+                  </RoleGuard>
+
+                  <RoleGuard allowedRoles={["admin"]}>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/30"
                         >
-                          {deletingId === product?.id ? (
-                            <>
-                              <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                              Deleting...
-                            </>
-                          ) : (
-                            "Delete"
-                          )}
-                        </AlertDialogAction>
-                      </div>
-                    </AlertDialogContent>
-                  </AlertDialog>
+                          <Trash2 className="h-4 w-4" />
+                          <span className="sr-only">
+                            Delete {product?.name}
+                          </span>
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Delete product</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Are you sure you want to delete "{product?.name}"?
+                            This action cannot be undone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <div className="flex gap-2 justify-end">
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDelete(product?.id)}
+                            disabled={deletingId === product?.id || loading}
+                            className="bg-red-600 hover:bg-red-700"
+                          >
+                            {deletingId === product?.id ? (
+                              <>
+                                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                                Deleting...
+                              </>
+                            ) : (
+                              "Delete"
+                            )}
+                          </AlertDialogAction>
+                        </div>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </RoleGuard>
                 </div>
               </TableCell>
             </TableRow>
