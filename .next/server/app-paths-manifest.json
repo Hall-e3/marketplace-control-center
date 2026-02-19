@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "/auth/register/page": "app/auth/register/page.js",
   "/auth/login/page": "app/auth/login/page.js",
@@ -5,3 +6,6 @@
   "/dashboard/products/new/page": "app/dashboard/products/new/page.js",
   "/dashboard/products/page": "app/dashboard/products/page.js"
 }
+=======
+{}
+>>>>>>> 49f8b50df1fef0af4e20e2f5417a7a4136ea356f

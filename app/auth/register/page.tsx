@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,7 +28,7 @@ export default function RegisterPage() {
     formState: { errors },
   } = useForm<RegisterData>({
     resolver: zodResolver(registerSchema),
-    mode: "onChange",
+    mode: "onTouched",
   });
 
   const onSubmit = (data: RegisterData) => {

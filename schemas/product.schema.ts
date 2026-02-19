@@ -1,25 +1,26 @@
 import { z } from "zod";
-
-export const productStatusSchema = z.enum([
-  "draft",
-  "pending_approval",
-  "approved",
-]);
+import { ProductStatusEnum } from "@/types/enum";
 
 export const createdBySchema = z.object({
   id: z.string().uuid(),
-  email: z.string().email(),
-  first_name: z.string().optional(),
-  last_name: z.string().optional(),
+  email: z.string().email("Invalid email address"),
+  first_name: z.string().min(2, "First name is too short").optional(),
+  last_name: z.string().min(2, "Last name is too short").optional(),
 });
 
 export const productSchema = z.object({
   id: z.string().uuid(),
-  name: z.string(),
+  name: z
+    .string()
+    .min(3, "Product name is too short")
+    .max(255, "Product name is too long"),
   slug: z.string(),
-  description: z.string(),
+  description: z
+    .string()
+    .min(10, "Description is too short")
+    .max(2000, "Description is too long"),
   price: z.string(),
-  status: productStatusSchema,
+  status: ProductStatusEnum,
   created_by: createdBySchema.optional(),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
@@ -39,13 +40,13 @@ export const createProductSchema = z.object({
   price: z.coerce
     .number()
     .positive("Price must be a positive number")
-    .max(999999.99, "Price is too high"),
+    .max(9999999.99, "Price is too high"),
 });
 
 export const updateProductSchema = createProductSchema.partial();
 
 // Infer TypeScript types
-export type ProductStatus = z.infer<typeof productStatusSchema>;
+export type ProductStatus = z.infer<typeof ProductStatusEnum>;
 export type Product = z.infer<typeof productSchema>;
 export type CreateProductData = z.infer<typeof createProductSchema>;
 export type UpdateProductData = z.infer<typeof updateProductSchema>;

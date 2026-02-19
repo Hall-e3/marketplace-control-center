@@ -1,6 +1,6 @@
 import { z } from "zod";
+import { RoleTypeEnum } from "@/types/enum";
 import {
-  roleTypeSchema,
   userSchema,
   loginSchema,
   registerSchema,
@@ -12,7 +12,7 @@ import {
   updateProductSchema,
 } from "@/schemas/product.schema";
 
-export type RoleType = z.infer<typeof roleTypeSchema>;
+export type RoleType = z.infer<typeof RoleTypeEnum>;
 export type Role = z.infer<typeof roleSchema>;
 export type User = z.infer<typeof userSchema>;
 export type LoginCredentials = z.infer<typeof loginSchema>;

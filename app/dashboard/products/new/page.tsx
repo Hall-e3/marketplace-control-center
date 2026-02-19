@@ -27,6 +27,7 @@ export default function CreateProductPage() {
     formState: { errors },
   } = useForm<CreateProductData>({
     schema: createProductSchema,
+    mode: "onTouched",
   });
 
   const onSubmit = (data: CreateProductData) => {
